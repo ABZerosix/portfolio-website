@@ -4,7 +4,6 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
   <title>Muhammad Abdullah • Web Pentester</title>
   <style>
     :root {
@@ -14,7 +13,6 @@
       --text-color: #ffffff;
       --accent-color: #00bfa6;
     }
-
     * { box-sizing: border-box; }
     html, body {
       height: 100%;
@@ -25,7 +23,6 @@
       color: var(--text-color);
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
     }
-
     /* Nav Bar */
     nav {
       position: fixed;
@@ -39,15 +36,35 @@
       display: flex;
       gap: 20px;
       z-index: 20;
+      transition: all 0.3s ease;
     }
     nav a {
       color: var(--text-color);
       text-decoration: none;
       font-weight: 500;
       transition: color 0.2s;
+      white-space: nowrap;
     }
     nav a:hover { color: var(--accent-color); }
-
+    
+    /* Mobile Menu Toggle */
+    .menu-toggle {
+      display: none;
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 25;
+      background: rgba(18,18,18,0.8);
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+    }
+    
     /* Hero */
     .stage {
       position: relative;
@@ -56,7 +73,6 @@
       overflow: hidden;
       background: linear-gradient(to right, var(--primary-color) 50%, var(--secondary-color) 50%);
     }
-
     .img {
       position: absolute;
       inset: 0;
@@ -68,7 +84,6 @@
       -webkit-user-drag: none;
       pointer-events: none;
     }
-
     /* Cycle reveal effect */
     .reveal {
       position: absolute;
@@ -80,7 +95,6 @@
       user-select: none;
       -webkit-user-drag: none;
       pointer-events: none;
-
       --radius: 2.5cm;
       --x: 50%;
       --y: 50%;
@@ -90,7 +104,6 @@
       opacity: 0;
     }
     .stage:hover .reveal { opacity: 1; }
-
     /* Name and title overlay */
     .info-bar {
       position: absolute;
@@ -109,7 +122,6 @@
       color: var(--text-color);
       text-transform: uppercase;
     }
-
     /* Generic sections */
     section {
       padding: 80px 10%;
@@ -129,7 +141,6 @@
       margin: auto;
       text-align: center;
     }
-
     /* Skills */
     .skills-container {
       max-width: 1200px;
@@ -201,7 +212,6 @@
       transform: scale(1.2);
       transition: transform 0.3s, color 0.3s;
     }
-
     /* Certificates */
     .cert-grid{
       display: grid;
@@ -210,7 +220,6 @@
       margin-top: 40px;
       justify-items: center;
     }
-
     .cert-card{
       position: relative;
       display: block;
@@ -225,13 +234,11 @@
       text-decoration: none;
       color: #fff;
     }
-
     .cert-card img{
       width: 100%;
       display: block;
       transition: transform .4s;
     }
-
     .cert-card span{
       display: block;
       padding: 14px 10px;
@@ -240,7 +247,6 @@
       text-align: center;
       letter-spacing: .5px;
     }
-
     /* glowing border animation */
     .card-glow{
       position: absolute;
@@ -253,26 +259,21 @@
       opacity: 0;
       transition: opacity .4s;
     }
-
     .cert-card:hover{
       transform: translateY(-8px) scale(1.03);
       box-shadow: 0 12px 30px rgba(0,191,166,.25);
     }
-
     .cert-card:hover .card-glow{
       opacity: 1;
     }
-
     .cert-card:hover img{
       transform: scale(1.08);
     }
-
     @keyframes glow{
       0%   { background-position: 0 50%; }
       50%  { background-position: 100% 50%; }
       100% { background-position: 0 50%; }
     }
-
     /* Projects */
     .projects-grid {
       display: grid;
@@ -364,7 +365,6 @@
       transform: translateY(-8px) scale(1.02);
       box-shadow: 0 15px 35px rgba(0,0,0,0.5);
     }
-
     /* Contact */
     #contact{
       padding: 100px 8%;
@@ -379,7 +379,6 @@
       font-size: 2rem;
       color: #00bfa6;
     }
-
     .contact-box{
       width: 100%;
       max-width: 900px;
@@ -387,7 +386,6 @@
       grid-template-columns: 1fr 1fr;
       gap: 50px;
     }
-
     /* ---- links ---- */
     .contact-links{
       display: flex;
@@ -420,7 +418,6 @@
       box-shadow: 0 8px 22px rgba(0,191,166,.25);
       border-color: #00bfa6;
     }
-
     /* ---- form ---- */
     .contact-form{
       display: flex;
@@ -462,7 +459,6 @@
       background: #1a73e8;
       color: #fff;
     }
-
     /* Floating shapes */
     .floating-shapes {
       position: absolute;
@@ -488,13 +484,46 @@
     .floating-shapes span:nth-child(3){ left:50%; animation-delay:4s; }
     .floating-shapes span:nth-child(4){ left:70%; animation-delay:6s; width:15px; height:15px; }
     .floating-shapes span:nth-child(5){ left:90%; animation-delay:8s; }
-
     @keyframes float {
       0% { transform: translateY(100vh) scale(1); opacity:0; }
       50% { opacity:0.5; }
       100% { transform: translateY(-100vh) scale(1.5); opacity:0; }
     }
-
+    
+    /* Mobile Navigation */
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(13, 17, 23, 0.98);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        border-radius: 0;
+        transform: translateX(-100%);
+        transition: transform 0.4s ease;
+        gap: 30px;
+      }
+      
+      nav.active {
+        transform: translateX(0);
+      }
+      
+      nav a {
+        font-size: 1.5rem;
+      }
+    }
+    
     /* Responsive Design */
     @media (max-width: 1200px) {
       .info-bar {
@@ -505,7 +534,7 @@
         font-size: 2.5rem;
       }
     }
-
+    
     @media (max-width: 1024px) {
       .info-bar {
         flex-direction: column;
@@ -513,16 +542,16 @@
         gap: 20px;
         padding: 0 30px;
       }
-
+      
       .info-bar span {
         font-size: 2.2rem;
         text-align: center;
       }
-
+      
       section {
         padding: 60px 6%;
       }
-
+      
       .skills-grid {
         grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       }
@@ -531,46 +560,37 @@
         gap: 40px;
       }
     }
-
+    
     @media (max-width: 900px) {
       .contact-box {
         grid-template-columns: 1fr;
         gap: 40px;
       }
     }
-
+    
     @media (max-width: 768px) {
-      nav {
-        top: 10px;
-        padding: 10px 20px;
-        gap: 12px;
-        font-size: 0.9rem;
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-
       .info-bar {
-        flex-direction: column;
         padding: 0 20px;
+        top: 85%;
       }
-
+      
       .info-bar span {
         font-size: 1.8rem;
       }
-
+      
       section h2 {
         font-size: 2rem;
       }
-
+      
       .skill {
         font-size: 0.9rem;
         padding: 12px;
       }
-
+      
       .project-card p {
         font-size: 0.9rem;
       }
-
+      
       .floating-shapes span {
         width: 15px;
         height: 15px;
@@ -584,7 +604,7 @@
         grid-template-columns: 1fr;
       }
     }
-
+    
     @media (max-width: 600px) {
       .cert-grid {
         grid-template-columns: 1fr;
@@ -604,24 +624,16 @@
         font-size: 1.7rem;
       }
     }
-
+    
     @media (max-width: 480px) {
-      nav {
-        flex-direction: column;
-        gap: 8px;
-        padding: 10px;
-        border-radius: 20px;
-        width: 90%;
-      }
-
       .info-bar span {
         font-size: 1.5rem;
       }
-
+      
       .project-card h3 {
         font-size: 1.1rem;
       }
-
+      
       section {
         padding: 50px 5%;
       }
@@ -641,31 +653,11 @@
     .stage {
       padding-top: 80px; /* Push content below navbar */
     }
-
+    
     /* On smaller screens */
     @media (max-width: 768px) {
       .stage {
-        padding-top: 100px; /* More padding for mobile navbar */
-      }
-
-      .info-bar {
-        top: 65%;
-        flex-direction: column;
-        gap: 10px;
-      }
-
-      .info-bar span {
-        font-size: 1.5rem;
-        text-align: center;
-      }
-
-      nav {
-        top: 10px;
-        left: 50%;
-        transform: translateX(-50%);
-        padding: 8px 16px;
-        flex-wrap: wrap;
-        gap: 10px;
+        padding-top: 0; /* Reset for mobile menu */
       }
     }
     
@@ -687,18 +679,21 @@
         justify-content: center;
       }
     }
-
   </style>
 </head>
 <body>
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#skills">Skills</a>
-    <a href="#certificates">Certificates</a>
-    <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
+  <button class="menu-toggle" id="menuToggle">
+    <i class="fas fa-bars"></i>
+  </button>
+  
+  <nav id="navbar">
+    <a href="#home" onclick="toggleMenu()">Home</a>
+    <a href="#skills" onclick="toggleMenu()">Skills</a>
+    <a href="#certificates" onclick="toggleMenu()">Certificates</a>
+    <a href="#projects" onclick="toggleMenu()">Projects</a>
+    <a href="#contact" onclick="toggleMenu()">Contact</a>
   </nav>
-
+  
   <!-- Hero -->
   <div class="stage" id="home">
     <img class="img front" src="imgs/MUHAMMAD ABDULLAH (1).png" alt="Front character" />
@@ -708,7 +703,7 @@
       <span>WEB<br>PENTESTER</span>
     </div>
   </div>
-
+  
   <!-- Skills -->
   <section id="skills">
     <h2>Skills</h2>
@@ -837,7 +832,7 @@
       </div>
     </div>
   </section>
-
+  
   <!-- Certificates -->
   <section id="certificates">
     <h2>Certificates</h2>
@@ -847,25 +842,21 @@
         <img src="imgs/pre.PNG" alt="Pre Security" />
         <span>Pre Security</span>
       </a>
-
       <a class="cert-card" href="imgs/cyb.PNG" target="_blank" rel="noopener">
         <div class="card-glow"></div>
         <img src="imgs/cyb.PNG" alt="Cyber 101" />
         <span>Cyber 101</span>
       </a>
-
       <a class="cert-card" href="imgs/jr.PNG" target="_blank" rel="noopener">
         <div class="card-glow"></div>
         <img src="imgs/jr.PNG" alt="Jr Pentester" />
         <span>Jr Pentester</span>
       </a>
-
       <a class="cert-card" href="imgs/webf.PNG" target="_blank" rel="noopener">
         <div class="card-glow"></div>
         <img src="imgs/webf.PNG" alt="Web Fundamentals" />
         <span>Web Fundamentals</span>
       </a>
-
       <a class="cert-card" href="imgs/web.PNG" target="_blank" rel="noopener">
         <div class="card-glow"></div>
         <img src="imgs/web.PNG" alt="Web Application Pentester" />
@@ -873,7 +864,7 @@
       </a>
     </div>
   </section>
-
+  
   <!-- Projects -->
   <section id="projects">
     <h2>Projects</h2>
@@ -950,11 +941,10 @@
       </div>
     </div>
   </section>
-
+  
   <!-- Contact -->
   <section id="contact">
     <h2>Get In Touch</h2>
-
     <div class="contact-box">
       <!-- left: quick links -->
       <div class="contact-links">
@@ -962,28 +952,23 @@
           <i class="fab fa-linkedin"></i>
           <span>LinkedIn</span>
         </a>
-
         <a href="https://github.com/ABZerosix" target="_blank" class="link-card">
           <i class="fab fa-github"></i>
           <span>GitHub</span>
         </a>
-
         <a href="https://instagram.com/ab_zerosix" target="_blank" class="link-card">
           <i class="fab fa-instagram"></i>
           <span>Instagram</span>
         </a>
-
         <a href="https://tryhackme.com/p/ABZerosixe" target="_blank" class="link-card">
           <i class="fas fa-bullseye"></i>
           <span>TryHackMe</span>
         </a>
-
         <a href="https://www.upwork.com/freelancers/~01b4694fcb534f7f16" target="_blank" class="link-card">
           <i class="fab fa-upwork"></i>
           <span>Upwork</span>
         </a>
       </div>
-
       <!-- right: simple email form (no back-end) -->
       <form class="contact-form" action="https://formspree.io/f/YOUR_ID" method="POST">
         <input type="text" name="name" placeholder="Your Name" required />
@@ -1002,38 +987,11 @@
     <span></span>
     <span></span>
   </div>
-<style>
-/* ---- hide nav on ≤ 768 px ---- */
-@media (max-width: 768px) {
-  nav { display: none !important; }
-}
-
-/* ---- floating name-tag on mobile ---- */
-@media (max-width: 768px) {
-  .neck-tag {
-    position: fixed;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(0,0,0,.5);
-    backdrop-filter: blur(8px);
-    color: #fff;
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-size: .9rem;
-    font-weight: 600;
-    letter-spacing: .5px;
-    z-index: 999;
-    box-shadow: 0 0 10px rgba(0,255,204,.35);
-  }
-}
-
-</style>
+  
   <script>
     (function() {
       const stage = document.getElementById('home');
       const reveal = document.getElementById('img-back');
-
       function setPos(clientX, clientY) {
         const rect = stage.getBoundingClientRect();
         const x = Math.max(0, Math.min(clientX - rect.left, rect.width));
@@ -1041,10 +999,8 @@
         reveal.style.setProperty('--x', x + 'px');
         reveal.style.setProperty('--y', y + 'px');
       }
-
       const startRect = stage.getBoundingClientRect();
       setPos(startRect.left + startRect.width/2, startRect.top + startRect.height/2);
-
       stage.addEventListener('mousemove', (e) => setPos(e.clientX, e.clientY));
       stage.addEventListener('touchmove', (e) => {
         if (e.touches && e.touches[0]) {
@@ -1052,30 +1008,36 @@
         }
       }, { passive: true });
     })();
-  </script>
-  <script src="https://kit.fontawesome.com/a0937d3f14.js" crossorigin="anonymous"></script>
-
-  
-<script>
-  // add the tag only on ≤ 768 px
-  if (window.innerWidth <= 768) {
-    const tag = document.createElement('div');
-    tag.className = 'neck-tag';
-    tag.innerText = 'Muhammad Abdullah';
-    document.body.appendChild(tag);
-  }
-  // update on resize
-  window.addEventListener('resize', () => {
-    const old = document.querySelector('.neck-tag');
-    if (window.innerWidth <= 768 && !old) {
-      const tag = document.createElement('div');
-      tag.className = 'neck-tag';
-      tag.innerText = 'Muhammad Abdullah';
-      document.body.appendChild(tag);
-    } else if (window.innerWidth > 768 && old) {
-      old.remove();
+    
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navbar = document.getElementById('navbar');
+    
+    function toggleMenu() {
+      navbar.classList.toggle('active');
+      const icon = menuToggle.querySelector('i');
+      if (navbar.classList.contains('active')) {
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-times');
+      } else {
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+      }
     }
-  });
-</script>
+    
+    menuToggle.addEventListener('click', toggleMenu);
+    
+    // Close menu when clicking on a link
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        navbar.classList.remove('active');
+        const icon = menuToggle.querySelector('i');
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+      });
+    });
+  </script>
+  
+  <script src="https://kit.fontawesome.com/a0937d3f14.js" crossorigin="anonymous"></script>
 </body>
 </html>
